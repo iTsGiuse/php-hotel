@@ -1,65 +1,65 @@
 <?php 
 
-$hotels = [
-    [
-        'name' => 'Hotel Belvedere',
-        'description' => 'Hotel Belvedere Descrizione',
-        'parking' => true,
-        'vote' => 4,
-        'distance_to_center' => 10.4
-    ],
-    [
-        'name' => 'Hotel Futuro',
-        'description' => 'Hotel Futuro Descrizione',
-        'parking' => true,
-        'vote' => 2,
-        'distance_to_center' => 2
-    ],
-    [
-        'name' => 'Hotel Rivamare',
-        'description' => 'Hotel Rivamare Descrizione',
-        'parking' => false,
-        'vote' => 1,
-        'distance_to_center' => 1
-    ],
-    [
-        'name' => 'Hotel Bellavista',
-        'description' => 'Hotel Bellavista Descrizione',
-        'parking' => false,
-        'vote' => 5,
-        'distance_to_center' => 5.5
-    ],
-    [
-        'name' => 'Hotel Milano',
-        'description' => 'Hotel Milano Descrizione',
-        'parking' => true,
-        'vote' => 2,
-        'distance_to_center' => 50
-    ],
-];
+    $hotels = [
+        [
+            'name' => 'Hotel Belvedere',
+            'description' => 'Hotel Belvedere Descrizione',
+            'parking' => true,
+            'vote' => 4,
+            'distance_to_center' => 10.4
+        ],
+        [
+            'name' => 'Hotel Futuro',
+            'description' => 'Hotel Futuro Descrizione',
+            'parking' => true,
+            'vote' => 2,
+            'distance_to_center' => 2
+        ],
+        [
+            'name' => 'Hotel Rivamare',
+            'description' => 'Hotel Rivamare Descrizione',
+            'parking' => false,
+            'vote' => 1,
+            'distance_to_center' => 1
+        ],
+        [
+            'name' => 'Hotel Bellavista',
+            'description' => 'Hotel Bellavista Descrizione',
+            'parking' => false,
+            'vote' => 5,
+            'distance_to_center' => 5.5
+        ],
+        [
+            'name' => 'Hotel Milano',
+            'description' => 'Hotel Milano Descrizione',
+            'parking' => true,
+            'vote' => 2,
+            'distance_to_center' => 50
+        ],
+    ];
 
-$filtroParcheggio = isset($_GET["sceltaParcheggio"]) && $_GET["sceltaParcheggio"] !== "prendefinito" ? $_GET["sceltaParcheggio"] : false;
-$filtroVoto = isset($_GET["sceltaVoto"]) && $_GET["sceltaVoto"] !== "prendefinito" ? $_GET["sceltaVoto"] : false;
+    $filtroParcheggio = isset($_GET["sceltaParcheggio"]) && $_GET["sceltaParcheggio"] !== "prendefinito" ? $_GET["sceltaParcheggio"] : false;
+    $filtroVoto = isset($_GET["sceltaVoto"]) && $_GET["sceltaVoto"] !== "prendefinito" ? $_GET["sceltaVoto"] : false;
 
-$hotelFiltrato = $hotels; 
+    $hotelFiltrato = $hotels; 
 
-if ($filtroParcheggio || $filtroVoto) {
-    $hotelFiltrato = [];
-    foreach ($hotels as $hotel) {
-        if ($filtroParcheggio && $filtroVoto) {
-            if ($hotel["parking"] && $hotel["vote"] >= $filtroVoto) {
-                $hotelFiltrato[] = $hotel;
-            }
-        } elseif ($filtroParcheggio) {
-            if ($hotel["parking"]) {
-                $hotelFiltrato[] = $hotel;
-            }
-        } elseif ($filtroVoto) {
-            if ($hotel["vote"] >= $filtroVoto) {
-                $hotelFiltrato[] = $hotel;
+    if ($filtroParcheggio || $filtroVoto) {
+        $hotelFiltrato = [];
+        foreach ($hotels as $hotel) {
+            if ($filtroParcheggio && $filtroVoto) {
+                if ($hotel["parking"] && $hotel["vote"] >= $filtroVoto) {
+                    $hotelFiltrato[] = $hotel;
+                }
+            } elseif ($filtroParcheggio) {
+                if ($hotel["parking"]) {
+                    $hotelFiltrato[] = $hotel;
+                }
+            } elseif ($filtroVoto) {
+                if ($hotel["vote"] >= $filtroVoto) {
+                    $hotelFiltrato[] = $hotel;
+                }
             }
         }
-    }
 }
 
 ?>
@@ -93,42 +93,41 @@ if ($filtroParcheggio || $filtroVoto) {
                     <tr>
                         <th><?= $hotels[0]['name'] ?></th>
                         <td><?= $hotels[0]['description'] ?></td>
-                        <td><?= $hotels[0]['parking'] ?></td>
+                        <td><?= $hotels[0]['parking'] ? 'Si' : 'No' ?></td>
                         <td><?= $hotels[0]['vote'] ?></td>
                         <td><?= $hotels[0]['distance_to_center'] ?> km</td>
                     </tr>
                     <tr>
                         <th><?= $hotels[1]['name'] ?></th>
                         <td><?= $hotels[1]['description'] ?></td>
-                        <td><?= $hotels[1]['parking'] ?></td>
+                        <td><?= $hotels[1]['parking'] ? 'Si' : 'No' ?></td>
                         <td><?= $hotels[1]['vote'] ?></td>
                         <td><?= $hotels[1]['distance_to_center'] ?> km</td>
                     </tr>
                     <tr>
                         <th><?= $hotels[2]['name'] ?></th>
                         <td><?= $hotels[2]['description'] ?></td>
-                        <td><?= $hotels[2]['parking'] ?></td>
+                        <td><?= $hotels[2]['parking'] ? 'Si' : 'No' ?></td>
                         <td><?= $hotels[2]['vote'] ?></td>
                         <td><?= $hotels[2]['distance_to_center'] ?> km</td>
                     </tr>
                     <tr>
                         <th><?= $hotels[3]['name'] ?></th>
                         <td><?= $hotels[3]['description'] ?></td>
-                        <td><?= $hotels[3]['parking'] ?></td>
+                        <td><?= $hotels[3]['parking'] ? 'Si' : 'No' ?></td>
                         <td><?= $hotels[3]['vote'] ?></td>
                         <td><?= $hotels[3]['distance_to_center'] ?> km</td>
                     </tr>
                     <tr>
                         <th><?= $hotels[4]['name'] ?></th>
                         <td><?= $hotels[4]['description'] ?></td>
-                        <td><?= $hotels[4]['parking'] ?></td>
+                        <td><?= $hotels[4]['parking'] ? 'Si' : 'No' ?></td>
                         <td><?= $hotels[4]['vote'] ?></td>
                         <td><?= $hotels[4]['distance_to_center'] ?> km</td>
                     </tr>
                 </tbody>
             </table>
         </div>
-
 
         <div class="container mt-5">
             <div class="row">
@@ -182,7 +181,7 @@ if ($filtroParcheggio || $filtroVoto) {
                                 <tr>
                                     <td><?= $hotel['name'] ?></td>
                                     <td><?= $hotel['description'] ?></td>
-                                    <td><?= $hotel['parking'] ? 'Yes' : 'No' ?></td>
+                                    <td><?= $hotel['parking'] ? 'Si' : 'No' ?></td>
                                     <td><?= $hotel['vote'] ?></td>
                                     <td><?= $hotel['distance_to_center'] ?> km</td>
                                 </tr>
